@@ -37,6 +37,10 @@ const routes: Array<RouteObject> = [
             {
                 path: "/page2",
                 element: <React.Suspense fallback={<LazyLoading />}><Page2 /></React.Suspense>
+            },
+            {
+                path:"*",
+                element: <Navigate to={"/page1"} /> // todo:404
             }
 
         ]
