@@ -1,8 +1,9 @@
-import About from "@/views/About";
-import Home from "@/views/Home";
+import { lazy } from "react";
 import { Navigate, RouteObject } from "react-router-dom";
 
 
+const Home = lazy(() => import("@/views/Home"));
+const About = lazy(() => import("@/views/About"));
 
 const routes: Array<RouteObject> = [
     {
