@@ -1,3 +1,4 @@
+import Login from "@/views/Login";
 import { Spin } from "antd";
 import React from "react";
 import { lazy } from "react";
@@ -39,12 +40,16 @@ const routes: Array<RouteObject> = [
                 element: <React.Suspense fallback={<LazyLoading />}><Page2 /></React.Suspense>
             },
             {
-                path:"*",
+                path: "*",
                 element: <Navigate to={"/page1"} /> // todo:404
             }
 
-        ]
+        ],
     },
+    {
+        path: "/login",
+        element: <Login />
+    }
 ];
 
 export default routes;

@@ -1,0 +1,41 @@
+.login{
+    position: relative;
+    height: 100vh;
+    background-color: #33a2de;
+    .loginBox{
+        width: 450px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        color: #fff;
+        h1{
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+            color: #fff;
+        }
+        p{
+            text-align: center;
+            margin: 20px 0;
+        }
+        .title{
+            margin-bottom: 40px;
+            position: relative;
+            &:before,&:after{
+                content: "";
+                width: 100px;
+                height: 2px;
+                position: absolute;
+                // background: linear-gradient(to right,rgb(255, 255, 255),black);
+                background-color: #fff;
+                left: -20px;
+                top: 20px;
+            }
+            &:after{
+                left: auto;
+                right: -20px;
+            }
+        }
+    }
+}
