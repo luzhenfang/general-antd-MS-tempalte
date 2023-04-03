@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import { Button } from 'antd'
 import { UpCircleOutlined } from "@ant-design/icons"
-import { Outlet } from 'react-router-dom'
+import { Outlet, useRoutes } from 'react-router-dom'
+
+import router from "./router";
 
 function App() {
-
+  const outlet = useRoutes(router);
   return (
     <div className="App">
-      {/* 占位组件 */}
-      <Outlet></Outlet>
+      {outlet}
     </div>
   )
 }
