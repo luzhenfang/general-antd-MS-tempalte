@@ -1,7 +1,8 @@
 import { Menu, MenuProps, theme } from "antd";
 import MenuItem from "antd/es/menu/MenuItem";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from "@ant-design/icons"
+import { useEffect } from "react";
 
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -35,6 +36,8 @@ const items: MenuItem[] = [
 
 const defaultMenu: React.FC = () => {
     const navigateTo = useNavigate();
+    const currentLocaton = useLocation();
+
 
     const {
         token: { colorBgContainer },
@@ -48,7 +51,7 @@ const defaultMenu: React.FC = () => {
 
 
     return (
-        <Menu theme="dark" defaultSelectedKeys={['/page1']} mode="inline" items={items} onClick={(e) => onMenuClick(e)} />
+        <Menu theme="dark" defaultSelectedKeys={[currentLocaton.pathname]} mode="inline" items={items} onClick={(e) => onMenuClick(e)} />
     )
 }
 export default defaultMenu;
