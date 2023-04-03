@@ -1,0 +1,10 @@
+$color: #eeee;
+
+body{
+    background-color: $color;
+    user-select: none; // disable select text
+}
+
+img{
+    -webkit-user-drag: none; // disable drag image
+}
