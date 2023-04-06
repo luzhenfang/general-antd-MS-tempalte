@@ -1,7 +1,7 @@
 // login module
 
 import { makeAutoObservable } from "mobx";
-import { http } from "@/utils";
+import { http,setToken } from "@/utils";
 
 class LoginStore {
     token: string = ""
@@ -10,8 +10,9 @@ class LoginStore {
     }
     setToken = (token: string) => {
         this.token = token;
+        setToken(token)
     }
-    
+
 }
 
 export default LoginStore;
