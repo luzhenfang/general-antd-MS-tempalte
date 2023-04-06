@@ -1,3 +1,4 @@
+import AuthComponent from "@/components/AuthComponent";
 import Login from "@/views/Login";
 import { Spin } from "antd";
 import React from "react";
@@ -29,7 +30,11 @@ const routes: Array<RouteObject> = [
     {
         // 嵌套路由(children)写法 
         path: "/",
-        element: <Home />,
+        element: <>
+            <AuthComponent>
+                <Home></Home>
+            </AuthComponent>
+        </>,
         children: [
             {
                 path: "/page1",
