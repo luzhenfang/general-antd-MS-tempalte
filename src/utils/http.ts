@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 
 const http = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://localhost:8000",
     timeout: 5000
 })
 

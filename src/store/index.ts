@@ -16,5 +16,5 @@ const context = React.createContext(rootStore);
 
 const useStore = () => React.useContext(context);
 
-export default useStore;
+export  {useStore};
 
