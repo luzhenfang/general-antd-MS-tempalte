@@ -39,7 +39,10 @@ const Home: React.FC = () => {
         </Header>
         {/* 右边内容 */}
         <Content
-          style={{ margin: "16px 16px 0", border: "1px solid red" }}
+          style={{
+            margin: "16px 16px 0",
+            border: "1px solid rgba(255,0,0,0)",
+          }}
           className="site-layout-background"
         >
           <Outlet />

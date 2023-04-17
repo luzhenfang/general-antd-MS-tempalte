@@ -27,24 +27,18 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("仪表盘", "/page1", <PieChartOutlined />),
-  getItem("文章", "/page2", <DesktopOutlined />, [
-    getItem("所有文章", "/all"),
+  getItem("仪表盘", "/dashboard", <PieChartOutlined />),
+  getItem("文章", "", <DesktopOutlined />, [
+    getItem("所有文章", "/articleList"),
     getItem("写文章", "/write"),
     getItem("文章分类", "/category"),
   ]),
-  getItem("页面", "/sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("附件", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
+  getItem("附件", "/accessories", <TeamOutlined />, [
+    getItem("图片", "/image"),
   ]),
   getItem("评论", "/comment", <FileOutlined />),
   getItem("用户", "/users", <FileOutlined />),
-  getItem("系统", "/sys", <FileOutlined />),
+  getItem("系统", "/system", <FileOutlined />),
 ];
 
 const defaultMenu: React.FC = () => {
@@ -56,6 +50,7 @@ const defaultMenu: React.FC = () => {
   } = theme.useToken();
 
   const onMenuClick = (e: { key: string }) => {
+    console.log(e);
     navigateTo(e.key);
   };
 
