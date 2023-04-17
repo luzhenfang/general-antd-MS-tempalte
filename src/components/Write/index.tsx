@@ -1,4 +1,4 @@
-import { Button, Card, Col, Input, Row, Space } from "antd";
+import { Button, Card, Col, Input, Row, Space, message } from "antd";
 import { useEffect, useState } from "react";
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -9,14 +9,20 @@ import ArticleCategory from "../ArticleCategory";
 import { useStore } from "@/store";
 import { observer } from "mobx-react";
 import { createArticle } from "@/api/article";
+import { useNavigate } from "react-router-dom";
 
 const view: React.FC = () => {
   const { articleStore } = useStore();
-  const publishArticle = () => {
+  const navigateTo = useNavigate();
+  const publishArticle = async () => {
     let cid = articleStore.currentId;
     let title = articleStore.currentTitle;
     let content = articleStore.currentContent;
-    createArticle(title,content,cid);
+    try {
+      await createArticle(title, content, cid);
+      message.success("发布文章成功");
+      navigateTo("/articleList");
+    } catch (e) {}
   };
   return (
     <>
