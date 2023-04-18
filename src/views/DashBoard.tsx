@@ -37,7 +37,8 @@ const Page: React.FC = () => {
             ></DataCard>
           </Col>
           <Col span={6}>
-            <DataCard title="阅读" value={300}></DataCard>
+            {/* toto: 用户访问次数 */}
+            <DataCard title="访问" value={300}></DataCard>
           </Col>
           <Col span={6}>
             <DataCard title="建立天数" value={20}></DataCard>

@@ -22,3 +22,9 @@ export const createArticle = async (
   console.log(res.data);
   return res;
 };
+
+// 删除一篇文章
+export const removeArticleById = async (id: string) => {
+  let res = await http.delete(`/api/v1/article/${id}`);
+  console.log(res);
+};

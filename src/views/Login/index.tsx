@@ -5,10 +5,12 @@ import "./login.scss";
 import { Button, Col, Form, Input, Row } from "antd";
 import { useStore } from "@/store";
 import { observer } from "mobx-react";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [visiable, setVisible] = useState(false);
   const { loginStore } = useStore();
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     setVisible(true);
@@ -23,8 +25,9 @@ const Login: React.FC = () => {
     transition: "500ms",
   };
 
-  const onFinish = (values:any) => {
+  const onFinish = (values: any) => {
     loginStore.login(values);
+    navigateTo("/dashboard");
   };
 
   return (

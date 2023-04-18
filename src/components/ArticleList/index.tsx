@@ -1,13 +1,13 @@
-import { getArticleList } from "@/api/article";
+import { getArticleList, removeArticleById } from "@/api/article";
 import { getCategoryList } from "@/api/category";
 import { useStore } from "@/store";
 import { Article } from "@/types/Article";
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
 import type { ActionType, ProColumns } from "@ant-design/pro-components";
 import { ProTable, TableDropdown } from "@ant-design/pro-components";
-import { Badge, Button, Dropdown, Space, Tag } from "antd";
+import { Badge, Button, Dropdown, Space, Tag, Popconfirm, message } from "antd";
 import { observer } from "mobx-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export const waitTimePromise = async (time: number = 100) => {
   return new Promise((resolve) => {
@@ -32,10 +32,13 @@ const view = () => {
   };
   const navigateTo = useNavigate();
 
+  const loadTableData = async () => {
+    let res = await getArticleList(1, 10);
+    articleStore.setArticleList(res);
+  };
+
   useEffect(() => {
-    getArticleList(1, 10).then((res) => {
-      articleStore.setArticleList(res);
-    });
+    loadTableData();
     (async () => {
       let res = await getCategoryList();
       categoryStore.setCategoryList(res);
@@ -46,15 +49,11 @@ const view = () => {
 
   const columns: ProColumns<Article>[] = [
     {
-      dataIndex: "index",
-      valueType: "indexBorder",
-      width: 48,
-    },
-    {
       title: "标题",
       dataIndex: "title",
       // copyable: true,
       ellipsis: true,
+      hideInSearch: true,
       tip: "文章标题",
       formItemProps: {
         rules: [
@@ -66,20 +65,17 @@ const view = () => {
       },
     },
     {
-      disable: true,
+      // disable: true,
       title: "分类",
       dataIndex: "categoryId",
       filters: true,
       onFilter: true,
       ellipsis: true,
+      hideInSearch: true,
       // valueType: "select",
       render: (text, record) => {
-        return <Tag color="green">{id2name(record.categoryId)}</Tag>;
+        return <Tag color="blue">{id2name(record.categoryId)}</Tag>;
       },
-      valueEnum: categoryStore.categoryList.reduce((obj: any, { id, name }) => {
-        obj[id] = name;
-        return obj;
-      }, {}),
     },
     // {
     //   disable: true,
@@ -106,7 +102,7 @@ const view = () => {
       dataIndex: "viewCount",
       hideInSearch: true,
       render: (text, row) => {
-        return <Badge count={row.viewCount} showZero></Badge>;
+        return <Badge count={row.viewCount} showZero color="#52c41a"></Badge>;
       },
     },
     {
@@ -122,14 +118,29 @@ const view = () => {
         >
           编辑
         </a>,
-        <a
-          href={record.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          key="view"
+        <Popconfirm
+          title="删除这篇文章"
+          description="你真的要删除这篇文章吗?"
+          onConfirm={() => {
+            try {
+              let articleId = record.id;
+              let res = removeArticleById(articleId);
+              message.success("删除成功");
+              // 伪 刷新
+              setTimeout(() => {
+                loadTableData();
+              }, 1000);
+            } catch {}
+          }}
+          onCancel={() => {}}
+          okText="是"
+          cancelText="否"
         >
-          查看
-        </a>,
+          <Button type="primary" danger size="small">
+            删除
+          </Button>
+        </Popconfirm>,
+
         // <TableDropdown
         //   key="actionGroup"
         //   onSelect={() => action?.reload()}
@@ -159,9 +170,7 @@ const view = () => {
         },
       }}
       rowKey="id"
-      search={{
-        labelWidth: "auto",
-      }}
+      search={false}
       options={{
         setting: {
           listsHeight: 400,
