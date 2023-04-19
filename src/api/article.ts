@@ -28,3 +28,12 @@ export const removeArticleById = async (id: string) => {
   let res = await http.delete(`/api/v1/article/${id}`);
   console.log(res);
 };
+
+// 更新一篇文章
+export const updateArticleById = async (a: Article) => {
+  let res = await http.put(`/api/v1/article/`,{
+    ...a
+  });
+  console.log(res);
+};
+

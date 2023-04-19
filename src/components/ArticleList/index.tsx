@@ -113,7 +113,8 @@ const view = () => {
         <a
           key="editable"
           onClick={() => {
-            action?.startEditable?.(record.id);
+            // action?.startEditable?.(record.id);
+            alert(record.id);
           }}
         >
           编辑
