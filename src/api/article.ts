@@ -12,7 +12,7 @@ export const getArticleList = async (page: number, size: number) => {
 export const createArticle = async (
   title: string,
   content: string,
-  categoryId: number
+  categoryId: string
 ) => {
   let res = await http.post("/api/v1/article", {
     title: title,
@@ -30,10 +30,9 @@ export const removeArticleById = async (id: string) => {
 };
 
 // 更新一篇文章
-export const updateArticleById = async (a: Article) => {
-  let res = await http.put(`/api/v1/article/`,{
-    ...a
+export const updateArticle = async (a: any) => {
+  let res = await http.put(`/api/v1/article/`, {
+    ...a,
   });
   console.log(res);
 };
-

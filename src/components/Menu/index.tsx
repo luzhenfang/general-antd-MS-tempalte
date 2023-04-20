@@ -33,11 +33,7 @@ const items: MenuItem[] = [
     getItem("写文章", "/write"),
     getItem("文章分类", "/category"),
   ]),
-  getItem("附件", "/accessories", <TeamOutlined />, [
-    getItem("图片", "/image"),
-  ]),
   getItem("评论", "/comment", <FileOutlined />),
-  getItem("用户", "/users", <FileOutlined />),
   getItem("系统", "/system", <FileOutlined />),
 ];
 

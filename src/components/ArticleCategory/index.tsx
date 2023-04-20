@@ -16,13 +16,14 @@ const view = () => {
 
   return (
     <Select
+      defaultValue={articleStore.currentCid}
       style={{ width: "100%" }}
       placeholder="文章分类"
       options={categoryStore.categoryList.map((item) => {
         return { label: item.name, value: item.id };
       })}
       onChange={(v) => {
-        articleStore.setCurrentArticleId(v);
+        articleStore.setCurrentCid(v);
       }}
     ></Select>
   );

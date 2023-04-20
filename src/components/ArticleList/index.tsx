@@ -2,6 +2,7 @@ import { getArticleList, removeArticleById } from "@/api/article";
 import { getCategoryList } from "@/api/category";
 import { useStore } from "@/store";
 import { Article } from "@/types/Article";
+import { EditMode } from "@/types/EditMode";
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
 import type { ActionType, ProColumns } from "@ant-design/pro-components";
 import { ProTable, TableDropdown } from "@ant-design/pro-components";
@@ -114,7 +115,12 @@ const view = () => {
           key="editable"
           onClick={() => {
             // action?.startEditable?.(record.id);
-            alert(record.id);
+            articleStore.setCurrentId(record.id);
+            articleStore.setCurrentCid(record.categoryId);
+            articleStore.setCurrentContent(record.content);
+            articleStore.setCurrentTitle(record.title);
+            articleStore.setEditorMode(EditMode.Update);
+            navigateTo("/write");
           }}
         >
           编辑
@@ -205,6 +211,7 @@ const view = () => {
           icon={<PlusOutlined />}
           onClick={() => {
             actionRef.current?.reload();
+            articleStore.setEditorMode(EditMode.Create);
             navigateTo("/write");
           }}
           type="primary"

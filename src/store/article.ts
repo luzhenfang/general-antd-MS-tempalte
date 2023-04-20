@@ -6,7 +6,8 @@ import { makeAutoObservable } from "mobx";
 
 export default class ArticleStore {
   articleList: ArticleList = {} as ArticleList;
-  currentId: number = 0;
+  currentCid: string = "";
+  currentId: string = "";
   currentContent: string = "";
   currentTitle: string = "";
   editorMode: EditMode = EditMode.Create; // 默认创建模式
@@ -20,8 +21,13 @@ export default class ArticleStore {
   };
 
   // 设置文章ID
-  setCurrentArticleId = async (id: number) => {
+  setCurrentId = async (id: string) => {
     this.currentId = id;
+  };
+
+  // 设置文章分类ID
+  setCurrentCid = async (id: string) => {
+    this.currentCid = id;
   };
 
   // 设置当前内容
@@ -36,5 +42,14 @@ export default class ArticleStore {
   // 设置编辑器模式
   setEditorMode = (e: EditMode) => {
     this.editorMode = e;
+  };
+
+  // 清空编辑器
+  clearEditor = () => {
+    this.currentCid = "";
+    this.currentContent = "";
+    this.currentCid = "";
+    this.currentTitle = "";
+    this.editorMode = EditMode.Create;
   };
 }

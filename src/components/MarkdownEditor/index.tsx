@@ -8,20 +8,45 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import ArticleCategory from "../ArticleCategory";
 import { useStore } from "@/store";
 import { observer } from "mobx-react";
-import { createArticle } from "@/api/article";
+import { createArticle, updateArticle } from "@/api/article";
 import { useNavigate } from "react-router-dom";
+import { EditMode } from "@/types/EditMode";
+import Article from "@/views/Article";
 
 const view: React.FC = () => {
   const { articleStore } = useStore();
   const navigateTo = useNavigate();
   const publishArticle = async () => {
-    let cid = articleStore.currentId;
+    let cid = articleStore.currentCid;
     let title = articleStore.currentTitle;
     let content = articleStore.currentContent;
-    try {
+
+    let methodMap = new Map<number, Function>();
+    methodMap.set(EditMode.Create, async () => {
       await createArticle(title, content, cid);
       message.success("发布文章成功");
-      navigateTo("/articleList");
+      setTimeout(() => {
+        navigateTo("/articleList");
+      }, 1000);
+    });
+
+    methodMap.set(EditMode.Update, async () => {
+      await updateArticle({
+        id: articleStore.currentId,
+        content: articleStore.currentContent,
+        title: articleStore.currentTitle,
+        categoryId: articleStore.currentCid,
+      });
+      message.success("修改文章成功");
+      setTimeout(() => {
+        navigateTo("/articleList");
+      }, 1000);
+    });
+
+    try {
+      let fn = methodMap.get(articleStore.editorMode);
+      await fn!();
+      articleStore.clearEditor();
     } catch (e) {}
   };
   return (
@@ -38,13 +63,14 @@ const view: React.FC = () => {
           <Col span={17}>
             <Input
               placeholder="文章标题"
+              value={articleStore.currentTitle}
               onChange={(e) => articleStore.setCurrentTitle(e.target.value)}
             ></Input>
           </Col>
           <Col span={1}></Col>
           <Col span={2}>
             <Button type="primary" onClick={() => publishArticle()}>
-              发布
+              {articleStore.editorMode === EditMode.Create ? "发布" : "更新"}
             </Button>
           </Col>
         </Row>

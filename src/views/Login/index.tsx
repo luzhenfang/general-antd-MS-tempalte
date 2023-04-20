@@ -27,7 +27,9 @@ const Login: React.FC = () => {
 
   const onFinish = (values: any) => {
     loginStore.login(values);
-    navigateTo("/dashboard");
+    setTimeout(() => {
+      navigateTo("/dashboard");
+    }, 2000);
   };
 
   return (
