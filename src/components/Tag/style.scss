@@ -1,0 +1,10 @@
+.random-color {
+  background-color: hsl(
+    /* 随机生成 0-360 之间的颜色色相值 */
+      calc(var(--hue, 0deg) + calc(360deg * random())),
+    /* 随机生成 20-70 之间的颜色饱和度值 */
+      calc(var(--saturation, 20%) + calc(50% * random())),
+    /* 随机生成 50-90 之间的颜色亮度值 */
+      calc(var(--lightness, 50%) + calc(40% * random()))
+  );
+}

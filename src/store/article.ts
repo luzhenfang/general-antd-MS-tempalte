@@ -1,4 +1,13 @@
-import { Article } from "@/types/Article";
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-16 13:17:17
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-04-22 23:20:10
+ * @FilePath: /general-antd-MS-tempalte/src/store/article.ts
+ * @Description:
+ *
+ */
+import { Article, Tag } from "@/types/Article";
 import { ArticleList } from "@/types/ArticleList";
 import { EditMode } from "@/types/EditMode";
 import { http } from "@/utils";
@@ -11,6 +20,7 @@ export default class ArticleStore {
   currentContent: string = "";
   currentTitle: string = "";
   editorMode: EditMode = EditMode.Create; // 默认创建模式
+  tags: Tag[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -51,5 +61,10 @@ export default class ArticleStore {
     this.currentCid = "";
     this.currentTitle = "";
     this.editorMode = EditMode.Create;
+  };
+
+  // 设置 标签
+  setTags = async (tags: Tag[]) => {
+    this.tags = tags;
   };
 }
