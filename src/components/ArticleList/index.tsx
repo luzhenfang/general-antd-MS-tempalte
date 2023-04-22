@@ -78,6 +78,19 @@ const view = () => {
         return <Tag color="blue">{id2name(record.categoryId)}</Tag>;
       },
     },
+    {
+      title: "标签",
+      dataIndex: "tags",
+      render: (text, record) => {
+        return (
+          <>
+            {record.tags.map((item) => {
+              return <Tag color="purple">{item.name}</Tag>;
+            })}
+          </>
+        );
+      },
+    },
     // {
     //   disable: true,
     //   title: "标签",

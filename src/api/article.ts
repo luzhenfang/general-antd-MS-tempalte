@@ -1,3 +1,12 @@
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-17 16:47:14
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-04-22 21:01:57
+ * @FilePath: /general-antd-MS-tempalte/src/api/article.ts
+ * @Description:
+ *
+ */
 import { Article } from "@/types/Article";
 import { http } from "@/utils";
 
@@ -5,6 +14,7 @@ export const getArticleList = async (page: number, size: number) => {
   let res = await http.get("/api/v1/article", {
     params: { page: page, size: size },
   });
+  console.log(res.data);
   return res.data;
 };
 
