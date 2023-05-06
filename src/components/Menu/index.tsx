@@ -1,3 +1,12 @@
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-15 17:24:03
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-04-23 00:52:02
+ * @FilePath: /general-antd-MS-tempalte/src/components/Menu/index.tsx
+ * @Description:
+ *
+ */
 import { Menu, MenuProps, theme } from "antd";
 import MenuItem from "antd/es/menu/MenuItem";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -31,7 +40,7 @@ const items: MenuItem[] = [
   getItem("文章", "", <DesktopOutlined />, [
     getItem("所有文章", "/articleList"),
     getItem("写文章", "/write"),
-    getItem("文章分类", "/category"),
+    getItem("分类标签", "/category"),
   ]),
   getItem("评论", "/comment", <FileOutlined />),
   getItem("系统", "/system", <FileOutlined />),

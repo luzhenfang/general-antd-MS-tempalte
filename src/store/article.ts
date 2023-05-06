@@ -2,7 +2,7 @@
  * @Author: luzhenfang 1318659507@qq.com
  * @Date: 2023-04-16 13:17:17
  * @LastEditors: luzhenfang 1318659507@qq.com
- * @LastEditTime: 2023-04-22 23:20:10
+ * @LastEditTime: 2023-04-23 00:49:16
  * @FilePath: /general-antd-MS-tempalte/src/store/article.ts
  * @Description:
  *
@@ -21,6 +21,7 @@ export default class ArticleStore {
   currentTitle: string = "";
   editorMode: EditMode = EditMode.Create; // 默认创建模式
   tags: Tag[] = [];
+  selectedTags: Tag[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -66,5 +67,10 @@ export default class ArticleStore {
   // 设置 标签
   setTags = async (tags: Tag[]) => {
     this.tags = tags;
+  };
+
+  // 选中标签
+  setSelectedTag = async (tag: Tag[]) => {
+    this.selectedTags = tag;
   };
 }

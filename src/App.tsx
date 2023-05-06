@@ -1,4 +1,4 @@
-import { useRoutes } from 'react-router-dom'
+import { useRoutes } from "react-router-dom";
 
 import router from "./router";
 
@@ -7,8 +7,9 @@ function App() {
   return (
     <div className="App">
       {outlet}
+
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

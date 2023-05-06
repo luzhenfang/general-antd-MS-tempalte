@@ -1,9 +1,18 @@
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-07 00:14:07
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-05-03 20:09:03
+ * @FilePath: /general-antd-MS-tempalte/src/utils/http.ts
+ * @Description: 
+ * 
+ */
 import axios from "axios";
 import { getToken } from "./token";
 import { message } from "antd";
 
 const http = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://localhost:80",
   timeout: 5000,
 });
 

@@ -1,3 +1,12 @@
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-15 17:35:46
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-04-23 00:53:32
+ * @FilePath: /general-antd-MS-tempalte/src/router/index.tsx
+ * @Description:
+ *
+ */
 import ArticleList from "@/components/ArticleList";
 import AuthComponent from "@/components/AuthComponent";
 import Login from "@/views/Login";
@@ -11,6 +20,7 @@ const About = lazy(() => import("@/views/About"));
 const DashBoard = lazy(() => import("@/views/DashBoard"));
 const Article = lazy(() => import("@/views/Article"));
 const WriteArticle = lazy(() => import("@/views/WriteArticle"));
+const CategoryTag = lazy(() => import("@/views/ArticleTags"));
 
 // 懒加载组件 loading
 const LazyLoading: React.FC = () => {
@@ -58,6 +68,14 @@ const routes: Array<RouteObject> = [
         element: (
           <React.Suspense fallback={<LazyLoading />}>
             <WriteArticle />
+          </React.Suspense>
+        ),
+      },
+      {
+        path: "/category",
+        element: (
+          <React.Suspense fallback={<LazyLoading />}>
+            <CategoryTag />
           </React.Suspense>
         ),
       },

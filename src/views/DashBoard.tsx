@@ -1,3 +1,12 @@
+/*
+ * @Author: luzhenfang 1318659507@qq.com
+ * @Date: 2023-04-03 18:13:36
+ * @LastEditors: luzhenfang 1318659507@qq.com
+ * @LastEditTime: 2023-05-01 21:23:34
+ * @FilePath: /general-antd-MS-tempalte/src/views/DashBoard.tsx
+ * @Description:
+ *
+ */
 import DataCard from "@/components/Card";
 import { Button, Card, Col, Row, Space } from "antd";
 import MindList from "@/components/MindList";
@@ -22,6 +31,7 @@ const Page: React.FC = () => {
   }, []);
   return (
     <Row style={{ margin: 30 }}>
+      <h2 className="bg-sky-900 aspect-square">这是关于组</h2>
       <Col span={24}>
         <Row gutter={[16, 0]}>
           <Col span={6}>

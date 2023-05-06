@@ -2,7 +2,7 @@
  * @Author: luzhenfang 1318659507@qq.com
  * @Date: 2023-04-17 16:47:14
  * @LastEditors: luzhenfang 1318659507@qq.com
- * @LastEditTime: 2023-04-22 21:01:57
+ * @LastEditTime: 2023-05-06 12:12:55
  * @FilePath: /general-antd-MS-tempalte/src/api/article.ts
  * @Description:
  *
@@ -43,6 +43,15 @@ export const removeArticleById = async (id: string) => {
 export const updateArticle = async (a: any) => {
   let res = await http.put(`/api/v1/article/`, {
     ...a,
+  });
+  console.log(res);
+};
+
+// 添加文章标签
+
+export const createTag = async (name: string) => {
+  let res = await http.post("/api/v1/tags", {
+    name,
   });
   console.log(res);
 };
